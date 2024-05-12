@@ -1,0 +1,65 @@
+.logoBlock {
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 60px;
+}
+
+
+.logoBlock img {
+    width: 32px;
+    height: 32px;
+    margin-right: 20px;
+}
+
+.logoBlock h1 {
+    font-family: "Poppins", sans-serif;
+    width: 600px;
+    font-size: 24px;
+    line-height: 36px;
+    color: var(--purple-main-500);
+}
+
+
+
+
+.notFoundBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.notFoundBlock h1 {
+    text-transform: uppercase;
+}
+
+.notFoundBlock p {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.notFoundBlock button {
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    background-color: var(--purple-main-500);
+}
+
+.notFoundBlock a {
+    color: var(--white);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+}

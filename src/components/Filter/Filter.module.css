@@ -1,0 +1,50 @@
+.filterContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.filterBlock {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /*align-self: center;*/
+    gap: 14px;
+}
+
+.sort {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.longInput {
+    width: 284px;
+}
+
+.longInput &:hover {
+    background-color: #9854F6;
+}
+
+.shortInput {
+    width: 138px;
+}
+
+.numberInputGroup {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    align-self: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.resetButton {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-weight: 500;
+    color: var(--grey-600);
+    cursor: pointer;
+}
+

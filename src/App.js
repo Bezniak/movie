@@ -1,25 +1,50 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import {createBrowserRouter, Outlet, RouterProvider} from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/Home/Home";
+import RatedMovies from "./pages/RatedMovies/RatedMovies";
+import Movie from "./pages/Movie/Movie";
+import NotFound from "./components/NotFound/NotFound";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const Layout = () => {
+    return (
+        <div className='app'>
+            <Navbar/>
+            <Outlet/>
+        </div>
+    )
 }
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Layout/>,
+        errorElement: <NotFound/>,
+        children: [
+            {
+                path: "/",
+                element: <Home/>
+            },
+            {
+                path: "/ratedMovies",
+                element: <RatedMovies/>
+            },
+            {
+                path: "/movie/:id",
+                element: <Movie/>
+            },
+        ]
+    },
+]);
+
+const App = () => {
+    return (
+        <div>
+            <RouterProvider router={router}/>
+        </div>
+    );
+};
 
 export default App;

@@ -1,0 +1,55 @@
+.block {
+    grid-area: h;
+    background-color: var(--bg-purple);
+    padding: 24px;
+    min-height: 100vh;
+}
+
+.logoBlock {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 60px;
+}
+
+.logoBlock img {
+    width: 32px;
+    height: 32px;
+    margin-right: 20px;
+}
+
+.logoBlock h1 {
+    font-family: "Poppins", sans-serif;
+    width: 600px;
+    font-size: 24px;
+    line-height: 36px;
+    color: var(--purple-main-500);
+}
+
+.linksBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.linksBlock a {
+    padding: 10px;
+}
+
+.linksBlock a:active {
+    background-color: var(--purple-200);
+    border-radius: 8px;
+    color: var(--purple-main-500);
+    font-weight: 700;
+}
+
+.active {
+    background-color: var(--purple-200);
+    border-radius: 8px;
+    color: var(--purple-main-500);
+    font-weight: 700;
+}
