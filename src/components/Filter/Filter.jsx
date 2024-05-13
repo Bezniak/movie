@@ -27,7 +27,7 @@ const Filter = ({genresData, genresLoading, genresError, years, setFilters, filt
                                 label: i.name
                             })) : []}
                             searchable
-                            hidePickedOptions
+                            hidepickedoptions="true"
                             value={filters.selectedGenre}
                             onChange={(value) => setFilters({...filters, selectedGenre: value})}
                             placeholder="Select genre"
@@ -41,7 +41,7 @@ const Filter = ({genresData, genresLoading, genresError, years, setFilters, filt
                             classNames={s}
                             data={years}
                             searchable
-                            hidePickedOptions
+                            hidepickedoptions="true"
                             value={filters.selectedYear}
                             onChange={(value) => setFilters({...filters, selectedYear: value})}
                             placeholder="Select release year"
@@ -88,12 +88,12 @@ const Filter = ({genresData, genresLoading, genresError, years, setFilters, filt
                             classNames={s}
                             className={s.longInput}
                             data={[
-                                {value: 'original_title.asc', label: 'Title'},
-                                {value: 'original_title.desc.asc', label: 'Description'},
-                                {value: 'popularity.desc', label: 'Popularity'},
-                                {value: 'primary_release_date.asc', label: 'Primary release'},
-                                {value: 'vote_average.asc', label: 'Vote average'},
-                                {value: 'vote_count.asc', label: 'Vote count'},
+                                {value: 'popularity.desc', label: 'Most Popular'},
+                                {value: 'popularity.asc', label: 'Least Popular'},
+                                {value: 'vote_count.desc', label: 'Most Rated'},
+                                {value: 'vote_count.asc', label: 'Least Rated'},
+                                {value: 'revenue.desc', label: 'Most Voted'},
+                                {value: 'revenue.asc', label: 'Least Voted'},
                             ]}
                             value={filters.sortBy}
                             onChange={(value) => setFilters({...filters, sortBy: value})}

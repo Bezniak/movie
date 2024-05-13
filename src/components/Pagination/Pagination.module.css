@@ -2,7 +2,7 @@
     display: none;
 }
 
-.lastElem button:nth-last-child(2){
+.lastElem button:nth-last-child(2) {
     display: none;
     visibility: hidden;
 }

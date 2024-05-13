@@ -22,14 +22,14 @@
     width: 284px;
 }
 
-.options:focus {
+.options .option:hover {
     color: var(--white);
     background-color: #9854F6;
-    border-radius: 80px;
+    border-radius: 8px;
     font-size: 14px;
 }
 
-.input:focus  {
+.input:focus {
     border-color: var(--purple-main-500);
 }
 

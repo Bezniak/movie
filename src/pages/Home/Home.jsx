@@ -3,7 +3,6 @@ import Filter from "../../components/Filter/Filter";
 import useFetchAllData from "../../hooks/useFetchAllData";
 import Movies from "../Movies/Movies";
 import s from './Home.module.css';
-import Preloader from "../../components/Preloader/Preloader";
 import PaginationComponent from "../../components/Pagination/Pagination";
 
 const Home = () => {
@@ -61,10 +60,10 @@ const Home = () => {
             </div>
             <div className={s.pagination}>
                 {
-                    !moviesData
-                        ? <Preloader/>
-                        : <PaginationComponent data={moviesData.total_pages} setActivePage={setActivePage}
-                                               activePage={activePage}/>
+                    moviesData && moviesData.results && moviesData.results.length > 0 && !moviesLoading ? (
+                        <PaginationComponent data={moviesData.total_pages} setActivePage={setActivePage}
+                                             activePage={activePage}/>
+                    ) : null
                 }
             </div>
         </div>

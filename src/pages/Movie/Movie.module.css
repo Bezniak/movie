@@ -90,11 +90,20 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    gap: 30px
+    gap: 40px;
 }
 
 .detailsTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     color: var(--grey-600);
+}
+
+.detailsDesc {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .starBlock {
@@ -147,3 +156,13 @@
     font-size: 16px;
 }
 
+
+.popApp {
+    font-size: 24px;
+    cursor: pointer;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}

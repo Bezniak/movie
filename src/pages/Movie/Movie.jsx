@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import s from './Movie.module.css';
 import {NavLink, useParams} from "react-router-dom";
 import useFetchAllData from "../../hooks/useFetchAllData";
 import {formatCount, formatDate, formatNumber, formatRuntime} from "../../common/utils/utils";
 import {BiSolidStar} from "react-icons/bi";
 import Preloader from "../../components/Preloader/Preloader";
+import RatingPopApp from "../../components/RatingPopApp/RatingPopApp";
 
 const Movie = () => {
 
@@ -12,16 +13,27 @@ const Movie = () => {
 
     const {data, loading, error} = useFetchAllData(`/movie/${id}?language=en-US`);
     const {data: genresData, loading: genesLoading, error: genesError} = useFetchAllData('/genre/movie/list');
+    const [ratingClicked, setRatingClicked] = useState(false);
 
-    console.log('film', data)
+    const [storedRating, setStoredRating] = useState(null);
+    const handleStarClick = () => {
+        setRatingClicked(true);
+    };
 
-    console.log(error)
+    useEffect(() => {
+        // Load rating from localStorage when component mounts
+        const savedRating = localStorage.getItem(`rating_${data.id}`);
+        if (savedRating !== null) {
+            setStoredRating(parseInt(savedRating));
+        }
+    }, [data.id]);
 
     if (loading) return <Preloader/>
     if (error) return <div className='error'>We are very sorry! Some error occurred: {error.message}</div>
 
     return (
         <div className={s.movieWrapper}>
+            {ratingClicked && <div className='overlay'></div>}
             <div className={s.movieContainer}>
                 <div className={s.link}>
                     <NavLink to='/'>Movies</NavLink> <span className={s.slash}>/</span> <span>{data?.title}</span>
@@ -52,7 +64,7 @@ const Movie = () => {
                                 <p>Gross worldwide</p>
                                 <p>Genres</p>
                             </div>
-                            <div>
+                            <div className={s.detailsDesc}>
                                 <p>{formatRuntime(data.runtime)}</p>
                                 <p>{formatDate(data.release_date)}</p>
                                 <p>${formatNumber(data.budget)}</p>
@@ -62,8 +74,8 @@ const Movie = () => {
                         </div>
                     </div>
                     <div className={s.starBlock}>
-                        <BiSolidStar className={s.clickedStar}/>
-                        <span className={s.myRating}>4</span>
+                        <BiSolidStar className={storedRating !== null ? 'clickedStarRated' : 'clickedStar'} onClick={handleStarClick} />
+                        <span className={s.myRating}>{storedRating !== null ? storedRating : ''}</span>
                     </div>
                 </div>
             </div>
@@ -94,6 +106,11 @@ const Movie = () => {
                     ))}
                 </div>
             </div>
+            {ratingClicked && (
+                <div className={s.popApp}>
+                    <RatingPopApp data={data} setRatingClicked={setRatingClicked} setStoredRating={setStoredRating} />
+                </div>
+            )}
         </div>
     );
 };

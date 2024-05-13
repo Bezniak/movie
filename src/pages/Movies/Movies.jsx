@@ -35,7 +35,7 @@ const Movies = ({ data, genresData, moviesLoading, genresLoading }) => {
 
     return (
         <div className={s.linkBlock}>
-            {ratingClicked && <div className={s.overlay}></div>}
+            {ratingClicked && <div className='overlay'></div>}
             <div className={s.linkWrapper}>
                 <div>
                     <img className={s.image}
@@ -46,26 +46,26 @@ const Movies = ({ data, genresData, moviesLoading, genresLoading }) => {
                 <div className={s.movieDescBlock}>
                     <div>
                         <NavLink to={`/movie/${data.id}`} onClick={handleClick}>
-                            <h2 className={s.movieTitle}>{data.original_title}</h2>
+                            <h2 className={s.movieTitle}>{data?.original_title}</h2>
                         </NavLink>
-                        <p className={s.movieYear}>{data.release_date.substring(0, 4)}</p>
+                        <p className={s.movieYear}>{data?.release_date?.substring(0, 4)}</p>
                         <div className={s.ratingBlock}>
                             <img src="/star.svg" alt="star" />
-                            <span className={s.voteAverage}>{data.vote_average.toFixed(1)}</span>
+                            <span className={s.voteAverage}>{data?.vote_average?.toFixed(1)}</span>
                             &nbsp;
-                            <span className={s.voteCount}>({formatCount(data.vote_count)})</span>
+                            <span className={s.voteCount}>({formatCount(data?.vote_count)})</span>
                         </div>
                     </div>
                     <div className={s.genresDesc}>
                         <p>
                             <span className={s.genres}>Genres</span> &nbsp;
-                            {getGenreNamesByIds(extractGenres(genresData), data.genre_ids).join(', ')}
+                            {getGenreNamesByIds(extractGenres(genresData), data?.genre_ids).join(', ')}
                         </p>
                     </div>
                 </div>
 
                 <div className={s.starBlock}>
-                    <BiSolidStar className={storedRating !== null ? s.clickedStarRated : s.clickedStar} onClick={handleStarClick} />
+                    <BiSolidStar className={storedRating !== null ? 'clickedStarRated' : 'clickedStar'} onClick={handleStarClick} />
                     <span className={s.myRating}>{storedRating !== null ? storedRating : ''}</span>
                 </div>
 
