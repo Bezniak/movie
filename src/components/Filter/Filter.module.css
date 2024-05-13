@@ -22,12 +22,15 @@
     width: 284px;
 }
 
-.longInput &:hover {
+.options:focus {
+    color: var(--white);
     background-color: #9854F6;
+    border-radius: 80px;
+    font-size: 14px;
 }
 
-.shortInput {
-    width: 138px;
+.input:focus  {
+    border-color: var(--purple-main-500);
 }
 
 .numberInputGroup {

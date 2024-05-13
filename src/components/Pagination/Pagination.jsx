@@ -1,20 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
+import s from './Pagination.module.css';
 import {MantineProvider, Pagination} from "@mantine/core";
-import s from "./Pagination.module.css";
 
-const PaginationComp = ({total, activePage, setPage}) => {
+const PaginationComponent = ({data, setActivePage, activePage}) => {
+
+    const classes = {dots: s.dots};
+
     return (
         <MantineProvider>
-            <Pagination
-                value={activePage}
-                color="#9854F6"
-                onChange={setPage}
-                total={total?.total_pages || 1}
-                dotsIcon={() => null}
-                className={s.dots}
+            <Pagination total={data || 1}
+                        activePage={activePage}
+                        setPage={setActivePage}
+                        onChange={setActivePage}
+                        color="#9854F6"
+                        className={s.lastElem}
+                        classNames={{dots: classes.dots}}
             />
         </MantineProvider>
     );
 };
 
-export default PaginationComp;
+export default PaginationComponent;

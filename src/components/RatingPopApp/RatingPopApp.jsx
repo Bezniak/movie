@@ -35,21 +35,49 @@ const RatingPopApp = ({data, setRatingClicked, setStoredRating}) => {
     };
 
     const handleSaveRating = () => {
-        // Save entire data object to localStorage
-        localStorage.setItem(`data_${data.id}`, JSON.stringify(data));
-        localStorage.setItem('data', JSON.stringify(data));
-        setRatingClicked(false);
+        // Get existing data from localStorage
+        const existingData = JSON.parse(localStorage.getItem('data')) || [];
 
+        // Add new data object to existing array
+        const newData = [...existingData, data];
+
+        // Save updated array back to localStorage
+        localStorage.setItem('data', JSON.stringify(newData));
+
+        // Dispatch a custom event to notify other components of the change
+        window.dispatchEvent(new Event('localStorageChange'));
+
+        // Update other necessary states or actions
+        setRatingClicked(false);
     };
 
     const handleRemoveRating = () => {
-        // Remove rating and data from localStorage
+        // Remove rating from localStorage
         localStorage.removeItem(`rating_${data.id}`);
-        localStorage.removeItem(`data_${data.id}`);
-        setRating(0); // Reset rating state
-        setStoredRating(null); // Reset storedRating state in Movies component
+
+        // Get existing data from localStorage
+        const existingData = JSON.parse(localStorage.getItem('data')) || [];
+
+        // Filter out the object to be removed
+        const updatedData = existingData.filter(item => item.id !== data.id);
+
+        // Save updated array back to localStorage
+        localStorage.setItem('data', JSON.stringify(updatedData));
+
+        // Dispatch a custom event to notify other components of the change
+        window.dispatchEvent(new Event('localStorageChange'));
+
+        // Reset rating state
+        setRating(0);
+
+        // Reset storedRating state in Movies component
+        setStoredRating(null);
+
+        // Close the rating popup
         setRatingClicked(false);
     };
+
+
 
 
     return (

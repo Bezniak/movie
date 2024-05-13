@@ -5,8 +5,7 @@
         'h'
         'c';
     grid-template-columns: 280px auto;
-    grid-gap: 80px;
+    column-gap: 80px;
     background-color: #f3f3f4;
     width: 100%;
-
 }

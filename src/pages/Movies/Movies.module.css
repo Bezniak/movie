@@ -51,7 +51,8 @@
     padding-right: 30px;
     font-size: 20px;
     font-family: "Inter", sans-serif;
-    font-weight: 600;line-height: 24px;
+    font-weight: 600;
+    line-height: 24px;
     padding-bottom: 4px;
 }
 
@@ -60,7 +61,6 @@
     font-weight: 400;
     color: var(--grey-600);
     padding-bottom: 4px;
-
 }
 
 .ratingBlock {
@@ -108,7 +108,13 @@
 .clickedStar {
     width: 28px;
     height: 28px;
-    fill: var(--purple-main-500);
+    fill: #D5D6DC; /* Цвет по умолчанию */
+}
+
+.clickedStarRated {
+    width: 28px;
+    height: 28px;
+    fill: #9854F6; /* Цвет после установки рейтинга */
 }
 
 .myRating {
@@ -125,6 +131,3 @@
     transform: translate(-50%, -50%);
     z-index: 1000;
 }
-
-
-

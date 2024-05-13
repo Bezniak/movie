@@ -1,18 +1,85 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import s from './RatedMovies.module.css';
 import Movies from "../Movies/Movies";
 import useFetchAllData from "../../hooks/useFetchAllData";
+import { MantineProvider, rem, TextInput } from "@mantine/core";
+import { CiSearch } from "react-icons/ci";
+import PaginationComponent from "../../components/Pagination/Pagination";
 
 const RatedMovies = () => {
+    const [activePage, setActivePage] = useState(1);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [data, setData] = useState(JSON.parse(localStorage.getItem('data')) || []);
+    const { data: genresData, loading: genresLoading, error: genresError } = useFetchAllData('/genre/movie/list');
+    const icon = <CiSearch style={{ width: rem(16), height: rem(16) }} />;
+    const filteredMovies = data.filter(movie => movie.title.toLowerCase().includes(searchQuery.toLowerCase()));
+    const handleSearchInputChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
 
-    const data = localStorage.getItem(`data`)
-    const {data: genresData, loading: genresLoading, error: genresError} = useFetchAllData('/genre/movie/list');
+    useEffect(() => {
+        const handleLocalStorageChange = () => {
+            setData(JSON.parse(localStorage.getItem('data')) || []);
+        };
 
+        window.addEventListener('localStorageChange', handleLocalStorageChange);
 
-    console.log('из хранилища', data)
+        return () => {
+            window.removeEventListener('localStorageChange', handleLocalStorageChange);
+        };
+    }, []);
+
     return (
-        <div>
+        <div className={s.container}>
+            {data.length > 0 && (
+                <div className={s.searchBlock}>
+                    <h1>Rated movies</h1>
+                    <MantineProvider>
+                        <div className={s.inputGroup}>
+                            <TextInput
+                                leftSection={icon}
+                                placeholder="Search movie title"
+                                rightSection={
+                                    <button className={s.btn}>Search</button>
+                                }
+                                className={s.input}
+                                size="md"
+                                value={searchQuery}
+                                onChange={handleSearchInputChange}
+                            />
+                        </div>
+                    </MantineProvider>
+                </div>
+            )}
+            <div className={s.movieWrapper}>
+                {filteredMovies.length > 0 ? (
+                    filteredMovies.map((movie) => (
+                        <div key={movie.id}>
+                            <Movies
+                                genresData={genresData}
+                                data={movie}
+                                genresLoading={genresLoading}
+                                moviesLoading={genresLoading}
+                            />
+                        </div>
+                    ))
+                ) : searchQuery ? (
+                    <div className={s.notFoundMovie}>
+                        <p>No movies found matching your search</p>
+                    </div>
+                ) : data.length === 0 ? (
+                    <div className={s.notFoundMovie}>
+                        <img src="/noRated.svg" alt="No films found" />
+                        <p>You haven't rated any films yet</p>
+                    </div>
+                ) : null}
 
-            <Movies data={data} genresData={genresData} genresLoading={genresLoading} moviesLoading={''}/>
+            </div>
+            {data.length > 0 && filteredMovies.length > 0 && (
+                <div className={s.pagination}>
+                    <PaginationComponent data={data} activePage={activePage} setActivePage={setActivePage} />
+                </div>
+            )}
         </div>
     );
 };

@@ -1,5 +1,8 @@
-.dots button:nth-last-child(2),
-.dots button:nth-last-child(3) {
+.dots {
+    display: none;
+}
+
+.lastElem button:nth-last-child(2){
     display: none;
     visibility: hidden;
 }

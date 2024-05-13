@@ -1,5 +1,5 @@
 .popAppBlock {
-    width: 380px;
+    min-width: 380px;
     height: fit-content;
     background-color: var(--white);
     position: relative;

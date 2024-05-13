@@ -12,40 +12,50 @@ const Filter = ({genresData, genresLoading, genresError, years, setFilters, filt
     if (genresLoading) return <Preloader/>;
     if (genresError) return <div>Error: {genresError.message}</div>;
 
+
     return (
         <div className={s.filterContainer}>
-            <div className={s.filterBlock}>
-                <MantineProvider>
+            <MantineProvider>
+                <div className={s.filterBlock}>
                     <div>
                         <span>Genres</span>
                         <MultiSelect
-                            className={s.longInput}
+                            classNames={s}
+                            className={`${s.longInput}`}
                             data={Array.isArray(genresData?.genres) ? genresData.genres.map(i => ({
                                 value: String(i.id),
                                 label: i.name
                             })) : []}
+                            searchable
+                            hidePickedOptions
                             value={filters.selectedGenre}
                             onChange={(value) => setFilters({...filters, selectedGenre: value})}
                             placeholder="Select genre"
                             rightSection={<FaChevronDown/>}
                         />
+
                     </div>
                     <div>
                         <span>Release year</span>
                         <Select
-                            className={s.longInput}
+                            classNames={s}
                             data={years}
+                            searchable
+                            hidePickedOptions
                             value={filters.selectedYear}
                             onChange={(value) => setFilters({...filters, selectedYear: value})}
                             placeholder="Select release year"
                             rightSection={<FaChevronDown/>}
                         />
+
                     </div>
 
                     <div>
                         <span>Ratings</span>
                         <div className={s.numberInputGroup}>
                             <NumberInput
+                                classNames={s}
+
                                 className={s.shortInput}
                                 min={0}
                                 max={10}
@@ -54,6 +64,7 @@ const Filter = ({genresData, genresLoading, genresError, years, setFilters, filt
                                 onChange={(value) => setFilters({...filters, numberFrom: value})}
                             />
                             <NumberInput
+                                classNames={s}
                                 className={s.shortInput}
                                 min={0}
                                 max={10}
@@ -69,13 +80,12 @@ const Filter = ({genresData, genresLoading, genresError, years, setFilters, filt
                             Reset filters
                         </button>
                     </div>
-                </MantineProvider>
-            </div>
-            <div className={s.sort}>
-                <MantineProvider>
+                </div>
+                <div className={s.sort}>
                     <div>
                         <span>Sort by</span>
                         <Select
+                            classNames={s}
                             className={s.longInput}
                             data={[
                                 {value: 'original_title.asc', label: 'Title'},
@@ -91,8 +101,9 @@ const Filter = ({genresData, genresLoading, genresError, years, setFilters, filt
                             rightSection={<FaChevronDown/>}
                         />
                     </div>
-                </MantineProvider>
-            </div>
+                </div>
+            </MantineProvider>
+
         </div>
     );
 };

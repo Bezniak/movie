@@ -3,8 +3,8 @@ import Filter from "../../components/Filter/Filter";
 import useFetchAllData from "../../hooks/useFetchAllData";
 import Movies from "../Movies/Movies";
 import s from './Home.module.css';
-import PaginationComp from "../../components/Pagination/Pagination";
 import Preloader from "../../components/Preloader/Preloader";
+import PaginationComponent from "../../components/Pagination/Pagination";
 
 const Home = () => {
 
@@ -16,16 +16,12 @@ const Home = () => {
         sortBy: 'popularity.desc',
     });
 
-    const [activePage, setPage] = useState(1);
-
+    const [activePage, setActivePage] = useState(1);
 
     const {data: genresData, loading: genresLoading, error: genresError} = useFetchAllData('/genre/movie/list');
-
     const {data: moviesData, loading: moviesLoading, error: moviesError} = useFetchAllData(
         `/discover/movie?language=en-US&with_genres=${filters.selectedGenre.join(',')}&primary_release_year=${filters.selectedYear}&vote_average.lte=${filters.numberFrom}&vote_average.gte=${filters.numberTo}&page=${activePage}&sort_by=${filters.sortBy}`
     );
-
-    console.log('всегооооо', moviesData)
 
     const handleReset = () => {
         setFilters({
@@ -42,6 +38,7 @@ const Home = () => {
         value: String(currentYear - index),
         label: String(currentYear - index)
     }));
+
 
     return (
         <div className={s.container}>
@@ -66,7 +63,8 @@ const Home = () => {
                 {
                     !moviesData
                         ? <Preloader/>
-                        : <PaginationComp total={moviesData} activePage={activePage} setPage={setPage}/>
+                        : <PaginationComponent data={moviesData.total_pages} setActivePage={setActivePage}
+                                               activePage={activePage}/>
                 }
             </div>
         </div>

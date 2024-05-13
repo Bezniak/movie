@@ -17,7 +17,11 @@ const Movies = ({ data, genresData, moviesLoading, genresLoading }) => {
         if (savedRating !== null) {
             setStoredRating(parseInt(savedRating));
         }
-    }, []);
+    }, [data.id]);
+
+    const handleStarClick = () => {
+        setRatingClicked(true);
+    };
 
     const handleClick = () => {
         // Smooth scroll to top using react-scroll
@@ -54,19 +58,16 @@ const Movies = ({ data, genresData, moviesLoading, genresLoading }) => {
                     </div>
                     <div className={s.genresDesc}>
                         <p>
-                            <span
-                                className={s.genres}>Genres
-                            </span> &nbsp;{getGenreNamesByIds(extractGenres(genresData), data.genre_ids).join(', ')}
+                            <span className={s.genres}>Genres</span> &nbsp;
+                            {getGenreNamesByIds(extractGenres(genresData), data.genre_ids).join(', ')}
                         </p>
                     </div>
                 </div>
 
-
                 <div className={s.starBlock}>
-                    <BiSolidStar className={s.clickedStar} onClick={() => setRatingClicked(true)} />
+                    <BiSolidStar className={storedRating !== null ? s.clickedStarRated : s.clickedStar} onClick={handleStarClick} />
                     <span className={s.myRating}>{storedRating !== null ? storedRating : ''}</span>
                 </div>
-
 
             </div>
 
