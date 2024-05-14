@@ -47,8 +47,8 @@ export const formatNumber = (number) => {
 export const formatRuntime = (minutes) => {
     const hours = Math.floor(minutes / 60);
     const remainingMinutes = minutes % 60;
-    const formattedHours = hours > 0 ? `${hours}h` : ''; // добавляем 'h' только если часы не нулевые
-    const formattedMinutes = `${remainingMinutes}m`.padStart(3, '0'); // всегда добавляем 'm', дополняя минуты до трех символов, начиная с нуля
+    const formattedHours = hours > 0 ? `${hours}h` : '';
+    const formattedMinutes = `${remainingMinutes}m`.padStart(3, '0');
 
     return `${formattedHours} ${formattedMinutes}`;
 };

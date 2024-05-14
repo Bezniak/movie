@@ -8,15 +8,11 @@ const RatingPopApp = ({data, setRatingClicked, setStoredRating}) => {
     const [hoverIndex, setHoverIndex] = useState(-1);
 
     useEffect(() => {
-        // Load rating from localStorage when component mounts
         const savedRating = localStorage.getItem(`rating_${data.id}`);
         if (savedRating !== null) {
             setRating(parseInt(savedRating));
         }
     }, [data.id]);
-
-
-    console.log('!!!!', data)
 
     const handleStarClick = (index) => {
         const newRating = index + 1;
@@ -24,7 +20,6 @@ const RatingPopApp = ({data, setRatingClicked, setStoredRating}) => {
         localStorage.setItem(`rating_${data.id}`, newRating); // Save rating to localStorage
         setStoredRating(newRating); // Update storedRating in Movies component
     };
-
 
     const handleStarHover = (index) => {
         setHoverIndex(index);
@@ -35,49 +30,23 @@ const RatingPopApp = ({data, setRatingClicked, setStoredRating}) => {
     };
 
     const handleSaveRating = () => {
-        // Get existing data from localStorage
         const existingData = JSON.parse(localStorage.getItem('data')) || [];
-
-        // Add new data object to existing array
         const newData = [...existingData, data];
-
-        // Save updated array back to localStorage
         localStorage.setItem('data', JSON.stringify(newData));
-
-        // Dispatch a custom event to notify other components of the change
         window.dispatchEvent(new Event('localStorageChange'));
-
-        // Update other necessary states or actions
         setRatingClicked(false);
     };
 
     const handleRemoveRating = () => {
-        // Remove rating from localStorage
         localStorage.removeItem(`rating_${data.id}`);
-
-        // Get existing data from localStorage
         const existingData = JSON.parse(localStorage.getItem('data')) || [];
-
-        // Filter out the object to be removed
         const updatedData = existingData.filter(item => item.id !== data.id);
-
-        // Save updated array back to localStorage
         localStorage.setItem('data', JSON.stringify(updatedData));
-
-        // Dispatch a custom event to notify other components of the change
         window.dispatchEvent(new Event('localStorageChange'));
-
-        // Reset rating state
         setRating(0);
-
-        // Reset storedRating state in Movies component
         setStoredRating(null);
-
-        // Close the rating popup
         setRatingClicked(false);
     };
-
-
 
 
     return (

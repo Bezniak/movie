@@ -1,5 +1,5 @@
 .popAppBlock {
-    min-width: 380px;
+    width: 380px;
     height: fit-content;
     background-color: var(--white);
     position: relative;
@@ -90,4 +90,91 @@
     font-weight: 600;
     color: var(--purple-main-500);
     cursor: pointer;
+}
+
+
+@media screen and (max-width: 1200px) {
+
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 576px) {
+    .popAppBlock {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .popAppBlock h3 {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .ratingBlock svg {
+        font-size: 25px;
+    }
+
+    .starRating {
+        text-align: center;
+    }
+
+    .starRating svg {
+        margin: 0;
+    }
+
+    .buttonBlock {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 320px) {
+
+
+    .popAppBlock {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .popAppBlock h3 {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .ratingBlock {
+        font-size: 1rem;
+    }
+
+    .ratingBlock svg {
+        font-size: 25px;
+    }
+
+    .starRating {
+        width: 100%;
+        font-size: 5px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .starRating svg {
+        margin: 0;
+    }
+
+    .buttonBlock {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .saveButton {
+        padding: 6px 15px;
+        font-size: 0.8rem;
+    }
+
+    .removeButton {
+        font-size: 0.8rem;
+    }
 }

@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
-import { makeRequest } from "../makeRequest";
+import {useCallback, useEffect, useState} from "react";
+import {makeRequest} from "../makeRequest";
 
 const useFetchAllData = (url) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null); // Изменено на null
+    const [error, setError] = useState(null);
 
     const fetchData = useCallback(async () => {
         try {
@@ -12,7 +12,7 @@ const useFetchAllData = (url) => {
             const res = await makeRequest.get(url);
             setData(res.data);
         } catch (error) {
-            setError(error); // Устанавливаем ошибку в состояние
+            setError(error);
         } finally {
             setLoading(false);
         }
@@ -22,7 +22,7 @@ const useFetchAllData = (url) => {
         fetchData();
     }, [fetchData]);
 
-    return { data, loading, error };
+    return {data, loading, error};
 };
 
 export default useFetchAllData;

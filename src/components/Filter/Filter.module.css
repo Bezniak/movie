@@ -7,9 +7,9 @@
 .filterBlock {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    /*align-self: center;*/
     gap: 14px;
 }
 
@@ -36,6 +36,7 @@
 .numberInputGroup {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-end;
     align-self: center;
     justify-content: space-between;
@@ -49,5 +50,77 @@
     font-weight: 500;
     color: var(--grey-600);
     cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .filterContainer {
+        width: 100vw;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .numberInputGroup {
+        flex-direction: column;
+    }
+
+    .filterBlock {
+        flex-direction: column;
+    }
+
+    .longInput {
+        width: 100%;
+    }
+
+    .hidden {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .filterContainer {
+        width: 100vw;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .numberInputGroup {
+        flex-direction: column;
+    }
+
+    .filterBlock {
+        flex-direction: column;
+    }
+
+    .longInput {
+        width: 100%;
+    }
+
+    .hidden {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .filterContainer {
+        width: 100vw;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .numberInputGroup {
+        flex-direction: column;
+    }
+
+    .filterBlock {
+        flex-direction: column;
+    }
+
+    .longInput {
+        width: 100%;
+    }
+
+    .hidden {
+        display: none;
+    }
 }
 

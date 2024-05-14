@@ -8,20 +8,17 @@ import Preloader from "../../components/Preloader/Preloader";
 import RatingPopApp from "../../components/RatingPopApp/RatingPopApp";
 
 const Movie = () => {
-
     const id = useParams().id;
-
     const {data, loading, error} = useFetchAllData(`/movie/${id}?language=en-US`);
     const {data: genresData, loading: genesLoading, error: genesError} = useFetchAllData('/genre/movie/list');
     const [ratingClicked, setRatingClicked] = useState(false);
-
     const [storedRating, setStoredRating] = useState(null);
+
     const handleStarClick = () => {
         setRatingClicked(true);
     };
 
     useEffect(() => {
-        // Load rating from localStorage when component mounts
         const savedRating = localStorage.getItem(`rating_${data.id}`);
         if (savedRating !== null) {
             setStoredRating(parseInt(savedRating));
@@ -34,7 +31,7 @@ const Movie = () => {
     return (
         <div className={s.movieWrapper}>
             {ratingClicked && <div className='overlay'></div>}
-            <div className={s.movieContainer}>
+            <div>
                 <div className={s.link}>
                     <NavLink to='/'>Movies</NavLink> <span className={s.slash}>/</span> <span>{data?.title}</span>
                 </div>
@@ -74,7 +71,8 @@ const Movie = () => {
                         </div>
                     </div>
                     <div className={s.starBlock}>
-                        <BiSolidStar className={storedRating !== null ? 'clickedStarRated' : 'clickedStar'} onClick={handleStarClick} />
+                        <BiSolidStar className={storedRating !== null ? 'clickedStarRated' : 'clickedStar'}
+                                     onClick={handleStarClick} />
                         <span className={s.myRating}>{storedRating !== null ? storedRating : ''}</span>
                     </div>
                 </div>
@@ -82,14 +80,14 @@ const Movie = () => {
 
             <div className={s.trailerContainer}>
                 <h2 className={s.title}>Trailer</h2>
-                <video controls width="500" height="281" style={{borderRadius: '10px'}}>
+                <video className={s.video} controls width="500" height="281" style={{borderRadius: '10px'}}>
                     {data.video && <source src={data.video} type="video/mp4"/>}
                     Ваш браузер не поддерживает воспроизведение видео.
                 </video>
                 <hr className={s.hr}/>
                 <div>
                     <h2 className={s.title}>Description</h2>
-                    <p>{data.overview}</p>
+                    <p className={s.filmDesc}>{data.overview}</p>
                 </div>
                 <hr className={s.hr}/>
 

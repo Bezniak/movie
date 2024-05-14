@@ -75,7 +75,7 @@ const Filter = ({genresData, genresLoading, genresError, years, setFilters, filt
                         </div>
                     </div>
                     <div>
-                        <div style={{visibility: "hidden"}}>s</div>
+                        <div className={s.hidden} style={{visibility: "hidden"}}>s</div>
                         <button className={s.resetButton} onClick={handleReset}>
                             Reset filters
                         </button>

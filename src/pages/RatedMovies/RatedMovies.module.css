@@ -43,7 +43,6 @@
     cursor: pointer;
 }
 
-
 .movieWrapper {
     display: flex;
     justify-content: space-between;
@@ -75,7 +74,76 @@
     display: none;
 }
 
-.lastElem button:nth-last-child(2){
+.lastElem button:nth-last-child(2) {
     display: none;
     visibility: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    .movieWrapper {
+        justify-content: center;
+    }
+
+    .searchBlock h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    .searchBlock {
+        flex-direction: column;
+    }
+
+    .searchBlock h1 {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+    }
+
+    .inputGroup {
+        width: 100%;
+    }
+
+    .input {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .container {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    .searchBlock {
+        flex-direction: column;
+    }
+
+    .searchBlock h1 {
+        font-size: 1rem;
+    }
+
+    .inputGroup {
+        width: 100%;
+    }
+
+    .input {
+        width: 100%;
+        padding: 0;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 4px 8px;
+    }
 }

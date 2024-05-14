@@ -53,3 +53,168 @@
     color: var(--purple-main-500);
     font-weight: 700;
 }
+
+
+/*start Mobile Menu */
+
+.mobileBlock {
+    display: block;
+}
+
+.mobileBlock {
+    position: relative;
+    display: block;
+    width: 95%;
+    height: 100vh;
+    z-index: 1000;
+    background-color: var(--bg-purple);
+}
+
+.mobileBlock svg {
+    position: absolute;
+    top: 3%;
+    right: 8%;
+    font-size: 25px;
+}
+
+.mobileLinksBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 70px 10px;
+}
+
+.mobileLinksBlock a {
+    padding: 5px 10px;
+}
+
+/*  start hamburgerMenu  */
+
+.mobileMenu {
+    display: none;
+}
+
+.hamburgerMenu {
+    padding: 30px 20px;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000000;
+}
+
+.hamburgerMenu svg {
+    width: 30px;
+    height: 30px;
+    color: var(--purple-main-500);
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+}
+
+.hamburgerMenuList {
+    padding: 20px 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: var(--bg-purple);
+    z-index: 13000000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.hamburgerMenuList.open {
+    transform: translateX(0%);
+}
+
+.menuBlock {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+}
+
+.menuBlock h1 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.menuBlock svg {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.hamburgerMenuList hr {
+    width: 100%;
+    color: lightgray;
+    height: 1px;
+    border: none;
+    background-color: lightgray;
+    margin: 10px 0;
+}
+
+.hamburgerMenuList a {
+    margin: 7px 30px;
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+
+.centeredContainer {
+    margin: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/*  end hamburgerMenu  */
+
+@media screen and (max-width: 1200px) {
+    .mobileMenu {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .block {
+        display: none;
+    }
+
+    .mobileMenu {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .block {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .block {
+        display: none;
+    }
+
+    .menuBlock h1 {
+        font-size: 1rem;
+    }
+
+    .menuBlock svg {
+        font-size: 1.5rem;
+    }
+
+    .hamburgerMenuList a {
+        font-size: 1rem;
+    }
+}
+
